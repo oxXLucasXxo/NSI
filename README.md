@@ -1,13 +1,14 @@
 
 # **Projet de Jeu Python**
-
+```
 Feuille de route - Projet Angry Birds RPG
 Nom du projet : アングリー・バード
 Date de début du projet : 14/10/2024
 Équipe : Diego : Interface/Structure Console, Code.
 Maxynn : Idées du jeu, équilibrage, mise en forme GDOC, SFX, aide Interface graphique.
 Alexi : Sprite, FX, Équilibrage, Organisation. 
-
+Date de fin du projet : --/--/202-
+```
 
 GDOC : https://docs.google.com/document/d/1V8MyXwGRuNBI2A7TsviFY9SDgMUBDJwqx2hymKexWuk/edit?tab=t.0
 

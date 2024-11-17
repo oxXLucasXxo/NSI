@@ -18,7 +18,7 @@ GDOC : https://docs.google.com/document/d/1V8MyXwGRuNBI2A7TsviFY9SDgMUBDJwqx2hym
 ## **Fonctionnalités**
 
 - **Personnages Jouables** :
-  - Choisissez parmi différents oiseaux : **Red**, **Chuck**,**Stella**, **Bubble** ou **Bomb**.
+  - Choisissez parmi différents oiseaux : **Red**, **Chuck**, **Stella**, **Bubble** ou **Bomb**.
   - Chaque oiseau possède des caractéristiques uniques (attaques spéciales, stamina, vitesse, etc.).
 
 - **Adversaires** :

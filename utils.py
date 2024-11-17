@@ -1,4 +1,3 @@
-
 def maximum(char) :
     """
     On définit une fonction qui à  partir d'une liste char retourne l'indice du 'personnage' qui a la plus grande vitesse cette liste.

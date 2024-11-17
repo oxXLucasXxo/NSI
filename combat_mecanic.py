@@ -1,4 +1,3 @@
-
 from bird import Bird
 from picoo import Picoo
 from utils import sort_speed, verif_int

@@ -1,4 +1,3 @@
-
 class Picoo :
     "Définition d'un cochon"
 

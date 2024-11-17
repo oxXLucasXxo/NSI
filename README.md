@@ -102,12 +102,3 @@ projet/
    ```
 
 ---
-
-## **Aperçu Futur**
-
-### Idées d'amélioration :
-- Ajouter de nouveaux personnages et adversaires.
-- Intégrer une interface graphique (par exemple avec Tkinter ou Pygame).
-- Créer un système de sauvegarde de la progression.
-
----

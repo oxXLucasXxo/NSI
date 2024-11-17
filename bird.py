@@ -1,4 +1,3 @@
-
 class Bird :
     "Définition d'un Bird"
 

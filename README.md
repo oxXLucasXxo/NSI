@@ -1,18 +1,27 @@
 
 # **Projet de Jeu Python**
 
-Un jeu simple écrit en Python, mettant en scène des combats entre oiseaux et cochons. Ce projet est une démonstration des concepts de programmation orientée objet, de gestion de combats au tour par tour, et d'architecture logicielle modulaire.
+Feuille de route - Projet Angry Birds RPG
+Nom du projet : アングリー・バード
+Date de début du projet : 14/10/2024
+Équipe : Diego : Interface/Structure Console, Code.
+Maxynn : Idées du jeu, équilibrage, mise en forme GDOC, SFX, aide Interface graphique.
+Alexi : Sprite, FX, Équilibrage, Organisation. 
+
+
+GDOC : https://docs.google.com/document/d/1V8MyXwGRuNBI2A7TsviFY9SDgMUBDJwqx2hymKexWuk/edit?tab=t.0
+
 
 ---
 
 ## **Fonctionnalités**
 
 - **Personnages Jouables** :
-  - Choisissez parmi différents oiseaux : **Red**, **Chuck**, ou **Bomb**.
+  - Choisissez parmi différents oiseaux : **Red**, **Chuck**,**Stella**, **Bubble** ou **Bomb**.
   - Chaque oiseau possède des caractéristiques uniques (attaques spéciales, stamina, vitesse, etc.).
 
 - **Adversaires** :
-  - Affrontez plusieurs types de cochons (Minion, Corporal, Fat, King Picoo).
+  - Affrontez plusieurs types de cochons (Minion, Corporal, Fat, King Picoo,...).
   - Combattez un boss final pour récupérer l'œuf volé.
 
 - **Système de Combat** :
@@ -50,8 +59,8 @@ projet/
 ### **Étapes**
 1. Clonez ce dépôt sur votre machine locale :
    ```bash
-   git clone https://github.com/username/nom-du-projet.git
-   cd nom-du-projet
+   git clone https://github.com/username/nsi.git
+   cd nsi
    ```
 
 2. Assurez-vous que Python est installé :
@@ -75,10 +84,6 @@ projet/
 
 ---
 
-## **Contribuer**
-
-Les contributions sont les bienvenues pour améliorer le jeu ou ajouter des fonctionnalités !
-
 ### **Comment contribuer**
 1. Forkez le dépôt.
 2. Créez une branche pour votre fonctionnalité ou correction :
@@ -92,14 +97,8 @@ Les contributions sont les bienvenues pour améliorer le jeu ou ajouter des fonc
    ```
 4. Poussez la branche et créez une Pull Request :
    ```bash
-   git push origin ma-fonctionnalite
+   git push origin ma-fonctionnalite #C'est pour vous ça Diego & Maxynn...
    ```
-
----
-
-## **Licence**
-
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
 ---
 
@@ -111,7 +110,3 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 - Créer un système de sauvegarde de la progression.
 
 ---
-
-## **Contact**
-
-Pour toute question ou suggestion, veuillez ouvrir une *Issue* ou me contacter via [votre email/contact GitHub].

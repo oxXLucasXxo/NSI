@@ -1,5 +1,5 @@
 
-# **Projet de Jeu Python**
+# **Angry Birds RPG - Projet NSI**
 ```
 Feuille de route - Projet Angry Birds RPG
 Nom du projet : アングリー・バード

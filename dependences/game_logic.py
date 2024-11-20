@@ -22,7 +22,7 @@ def jeu() :
     print('Il décide de suivre ses traces et se met alors en quête du précieux oeuf.')
     print("")
     time.sleep(2)
-    stage=1#on initialise le numéro du stage
+    stage=10#on initialise le numéro du stage
     lieu='la forêt.'#on précise le lieu du perso pour donner du contexte
     print('Vous entrez dans la forêt.')
     time.sleep(3)
@@ -76,6 +76,7 @@ def jeu() :
         while stage==9 :#au stage 9 on change de mode de jeu
             lieu='Château'
             print('Vous entrez dans le château.')
+            time.sleep(3)
             enemies=[Picoo(random.choice(picoo_list)) for i in range (3)]#liste des ennemis
             print('Stage',stage,":",perso.nom,'affronte',enemies[0].nom+', '+enemies[1].nom+' et '+enemies[2].nom)
             if combat_multiple(perso,enemies) :#si le joueur est vainqueur
@@ -108,6 +109,7 @@ def jeu() :
             while Roi.PV>0 and perso.PV>0 :#tant que les deux ont encore des PV
                 tour+=1
                 print('')
+                time.sleep(1)
                 print(perso.nom+': Stamina:',perso.stamina,', PV:', perso.PV,'/',perso.PVmax,'// PV '+Roi.nom+':',Roi.PV,'/',Roi.PVmax)#on rappelle les PV de chacun
                 if perso.vitesse>Roi.vitesse :#si le personnage est plus rapide que le King Picoo
                     if perso.tour==True :
@@ -116,12 +118,15 @@ def jeu() :
                         if tour%3==0 :#tous les trois tours
                             if 2*Roi.PVmax//3<Roi.PV<Roi.PVmax :#si le roi est dans son troisième tiers de PV
                                 print('King Picoo envoie 3 Minions')
+                                time.sleep(2)
                                 combat_multiple(perso,[Picoo('Minion') for i in range(3)])#il envoie trois Minions au combat
                             if Roi.PVmax//3<Roi.PV<2*Roi.PVmax//3 :#s'il est dans son deuxième tiers
                                 print('King Picoo invoque 3 Corporal')
+                                time.sleep(3)
                                 combat_multiple(perso,[Picoo('Corporal') for i in range(3)])#il envoie trois corporal
                             else :#s'il est dans son premier tiers
                                 print('King Picoo est très en colère. \nIl invoque trois Picoos.')
+                                time.sleep(3)
                                 combat_multiple(perso,[Picoo(random.choice(['Fat','Corporal'])) for i in range(3)])#il envoie de manière aléatoire trois picoos parmi Corporal et Fat
                         else :#le reste du temps
                             Roi.attaquer(perso)#le roi attaque le joueur
@@ -133,6 +138,7 @@ def jeu() :
                             perso.attaquer(Roi)#puis s'il est en vie, le joueur attaque
             if Roi.PV <= 0 :#si le roi meurt
                 print('Bravo! Vous avez vaincu King Picoo')#on félicite le joueur
+                time.sleep(2)
                 print("Vous avez récupéré l'oeuf !")
                 stage+=1#on arrête le jeu
             else :#si le joueur meurt

@@ -1,3 +1,4 @@
+import time
 class Bird :
     "Définition d'un Bird"
 
@@ -51,6 +52,7 @@ class Bird :
         ennemi_tour=True
         attaque_valide=False#on initialise une variable qui permettra de vérfier que le Bird peut attaquer
         print('')
+        time.sleep(1)
         while not attaque_valide :
             if self.nom=='Bomb' :
                 print(self.nom+': Stamina:',self.stamina,', PV:', self.PV,'/',self.PVmax,'// PV '+ennemi[indice].nom+':',ennemi[indice].PV)#on rappelle les PV de chacun

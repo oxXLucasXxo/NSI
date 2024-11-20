@@ -1,3 +1,4 @@
+import time
 class Picoo :
     "Définition d'un cochon"
 
@@ -34,6 +35,7 @@ class Picoo :
         """
         on définit une méthode qui permet au cochon/picoo d'attaquer le bird.
         """
+        time.sleep(1)
         if self.attaque<ennemi.defense:#si la défense de l'ennemi du cochon (cà d du bird) est supérieure
             ennemi.PV-=0#on inflige aucun dégàt
             print(self.nom,'attaque',ennemi.nom,':' ,self.nom,' ne vous fait aucun dégà¢ts.')

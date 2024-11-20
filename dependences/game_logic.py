@@ -23,8 +23,9 @@ def jeu() :
     print("")
     time.sleep(2)
     stage=1#on initialise le numéro du stage
-    lieu='la forêt'
+    lieu='la forêt.'#on précise le lieu du perso pour donner du contexte
     print('Vous entrez dans la forêt.')
+    time.sleep(3)
     stop=False
     while not stop :
         while stage<9 :#jusqu'au stage 9
@@ -33,8 +34,9 @@ def jeu() :
                 picoo_list.append('Corporal')#on ajoute corporal à  la liste de cochons possibles
             if stage==4 :#et si on est au stage 4
                 picoo_list.append('Fat')#on ajoute Fat à  la liste des cochons
-                lieu='les mines'
+                lieu='les mines.'
                 print('Vous entrez dans les mines.')
+                time.sleep(3)
             print('Stage',stage,":",perso.nom,'affronte',picoo.nom,'dans',lieu)#on annonce le stage et on précise les opposants
             if combat(perso,picoo) :#si le joueur remporte le combat
                 print('Stamina :',perso.stamina,'- PV',perso.nom,':',perso.PV,'/',perso.PVmax,'// PV',picoo.nom,':',picoo.PV)#on annonce le résultat
@@ -50,7 +52,7 @@ def jeu() :
                 if perso.stamina>=perso.staminamax :#si la stamina obtenue est supérieure à  la stamina max
                     perso.stamina=perso.staminamax#on lui donne la valeur de la stamina max
                 stage+=1#on augmente le stage
-            else :#sil perd
+            else :#s'il perd
                 print('Game Over')
                 if input('Reprendre le stage ? 1:Oui 2:Non') == '1' :#on lui demande s'il souhaite reprendre
                     perso.PV=perso.PVmax#on remet ses stats au maximum
@@ -94,8 +96,10 @@ def jeu() :
             perso.stamina=perso.staminamax
             perso.tour=True
             print('')
-            print('Vous entrez finalement dans la demeure de King Picoo')
+            print('Vous entrez finalement dans la demeure de King Picoo.')
+            time.sleep(3)
             print('Il vous attendais...')
+            time.sleep(2)
             print('Vous engagez le combat sans plus attendre.')
             print('')
             Roi=Picoo('King Picoo')#on crée le boss
@@ -103,11 +107,12 @@ def jeu() :
             ennemi_tour=True
             while Roi.PV>0 and perso.PV>0 :#tant que les deux ont encore des PV
                 tour+=1
+                print('')
                 print(perso.nom+': Stamina:',perso.stamina,', PV:', perso.PV,'/',perso.PVmax,'// PV '+Roi.nom+':',Roi.PV,'/',Roi.PVmax)#on rappelle les PV de chacun
                 if perso.vitesse>Roi.vitesse :#si le personnage est plus rapide que le King Picoo
                     if perso.tour==True :
                         perso.attaquer(Roi)#il attaque en premier
-                    if Roi.PV>0 and ennemi_tour==True:#si le roi a encore des PV
+                    if Roi.PV>0 and ennemi_tour==True:#si le roi a encore des PV et qu'il peut jouer
                         if tour%3==0 :#tous les trois tours
                             if 2*Roi.PVmax//3<Roi.PV<Roi.PVmax :#si le roi est dans son troisième tiers de PV
                                 print('King Picoo envoie 3 Minions')
@@ -136,7 +141,7 @@ def jeu() :
                     perso.PV=perso.PVmax#on remet ses stats au maximum
                     perso.stamina=perso.staminamax
                 else :
-                    print('àŠtes-vous sà»r de vouloir quitter ? Votre progression sera perdue.')
+                    print('Êtes-vous sûr de vouloir quitter ? Votre progression sera perdue.')
                     print('1: Oui')
                     print('2: Non')
                     verif = False
@@ -144,6 +149,7 @@ def jeu() :
                         rep=input()#on redemande au joueur
                         if rep in ['1','2'] :#sinon  on confirme qu'il veuille bien quitter
                             if rep=='1' :
+                                stage+=1
                                 stop=True#on arrête le jeu
                             else :#sinon on remet ses stats au maximum
                                 perso.PV=perso.PVmax

@@ -17,6 +17,11 @@ class Perso :
         self.nb_frames=len(self.l_sprites[self.direction])
         screen.blit(self.l_sprites[self.direction][int(self.current_frame)%self.nb_frames],(self.x,self.y))
 
+class Enemy :
+    "définition d'un ennemi"
+    def __init__(self) -> None:
+        pass
+
 pygame.init()
 
 def jeu() :

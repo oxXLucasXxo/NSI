@@ -4,10 +4,10 @@ from pygame.locals import*
 class Perso :
     "Définition d'un personnage"
     def __init__(self,nom):
-        self.l_sprites={'haut':[pygame.image.load('images/'+nom+'_h'+str(i)+'.png') for i in range(1,10)],
-                        'bas': [pygame.image.load('images/'+nom+str(i)+'.png') for i in range(1,10)],
-                        'droite' : [pygame.image.load('images/'+nom+'_d'+str(i)+'.png') for i in range(1,9)],
-                        'gauche' : [pygame.transform.flip(pygame.image.load('images/'+nom+'_d'+str(i)+'.png'),True,False) for i in range(1,9)]}
+        self.l_sprites={'haut':[pygame.image.load('animations_sprites/images/'+nom+'_h'+str(i)+'.png') for i in range(1,10)],
+                        'bas': [pygame.image.load('animations_sprites/images/'+nom+str(i)+'.png') for i in range(1,10)],
+                        'droite' : [pygame.image.load('animations_sprites/images/'+nom+'_d'+str(i)+'.png') for i in range(1,9)],
+                        'gauche' : [pygame.transform.flip(pygame.image.load('animations_sprites/images/'+nom+'_d'+str(i)+'.png'),True,False) for i in range(1,9)]}
         self.direction='bas'
         self.nb_frames=len(self.l_sprites[self.direction])
         self.current_frame=0
@@ -31,7 +31,7 @@ def jeu() :
         for event in pygame.event.get() :
             if event.type==QUIT :
                 pygame.quit()
-            elif event.type==KEYDOWN :
+            elif event.type==KEYDOWN and not move:
                 if event.key==K_UP :
                     perso.direction='haut'
                     move=True

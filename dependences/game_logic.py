@@ -2,20 +2,29 @@ import random
 import time
 from bird import Bird
 from picoo import Picoo
+from menu import menu
 from combat_mecanic import combat, combat_multiple
 
 def jeu() :
     """
     On définit la fonction principale du jeu.
     """
-    nom=''
-    while nom.lower() not in ['chuck','red','bomb'] :
-        nom=input('Quel personnage veux-tu ? Red, Chuck, Bomb').lower()#on demande au joueur de choisir un oiseau
-        if nom.lower() not in ['chuck','red','bomb'] :
-            print('Valeur invalide !')
-    perso=Bird(nom.lower())#on crée un bird
+    perso=menu()
     picoo_list=['Minion']#on crée une liste de types possibles de picoo/cochon
+    print(perso.nom,"et ses amis s'endormaient paisiblement autour de leur précieux oeuf...")
+    time.sleep(2.5)
+    print('Soudain une horde de Picoos débarque et saccage tout. Alors que',perso.nom,"dort encore paisiblement, ses amis sont enlevés et l'oeuf est subtilisé...")
+    time.sleep(3)
+    print(perso.nom,'se réveille seul...')
+    time.sleep(1.5)
+    print("Il se rend compte que l'oeuf et ses amis ont disparu. Mais il reconnaît les traces laissés par les vils Picoo...")
+    time.sleep(4)
+    print('Il décide de suivre ses traces et se met alors en quête du précieux oeuf.')
+    print("")
+    time.sleep(2)
     stage=1#on initialise le numéro du stage
+    lieu='la forêt'
+    print('Vous entrez dans la forêt.')
     stop=False
     while not stop :
         while stage<9 :#jusqu'au stage 9
@@ -24,7 +33,9 @@ def jeu() :
                 picoo_list.append('Corporal')#on ajoute corporal à  la liste de cochons possibles
             if stage==4 :#et si on est au stage 4
                 picoo_list.append('Fat')#on ajoute Fat à  la liste des cochons
-            print('Stage',stage,":",perso.nom,'affronte',picoo.nom)#on annonce le stage et on précise les opposants
+                lieu='les mines'
+                print('Vous entrez dans les mines.')
+            print('Stage',stage,":",perso.nom,'affronte',picoo.nom,'dans',lieu)#on annonce le stage et on précise les opposants
             if combat(perso,picoo) :#si le joueur remporte le combat
                 print('Stamina :',perso.stamina,'- PV',perso.nom,':',perso.PV,'/',perso.PVmax,'// PV',picoo.nom,':',picoo.PV)#on annonce le résultat
                 print(picoo.nom+' est K.O.')#on précise que le picoo est K.O.
@@ -45,7 +56,7 @@ def jeu() :
                     perso.PV=perso.PVmax#on remet ses stats au maximum
                     perso.stamina=perso.staminamax
                 else :
-                    print('àŠtes-vous sà»r de vouloir quitter ? Votre progression sera perdue.')
+                    print('Êtes-vous sûr de vouloir quitter ? Votre progression sera perdue.')
                     print('1: Oui')
                     print('2: Non')
                     verif = False
@@ -61,6 +72,8 @@ def jeu() :
                         else :
                             print('Format invalide !')
         while stage==9 :#au stage 9 on change de mode de jeu
+            lieu='Château'
+            print('Vous entrez dans le château.')
             enemies=[Picoo(random.choice(picoo_list)) for i in range (3)]#liste des ennemis
             print('Stage',stage,":",perso.nom,'affronte',enemies[0].nom+', '+enemies[1].nom+' et '+enemies[2].nom)
             if combat_multiple(perso,enemies) :#si le joueur est vainqueur
@@ -140,3 +153,4 @@ def jeu() :
                             print('Format invalide !')
 
         stop=True#on arrête le jeu
+jeu()

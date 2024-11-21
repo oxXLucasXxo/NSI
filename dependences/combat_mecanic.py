@@ -80,19 +80,20 @@ def combat_multiple(perso,enemies) :
             elif ennemi_tour==False :
                 ennemi_tour=True
         print('')
-        for pic in enemies :
-            print('PV '+pic.nom+':',pic.PV)#on affiche les PV de chaque ennemi
-        print('PV '+perso.nom+': ',perso.PV)
-        print('')
-        if perso.nom=='Chuck' :
-            if perso.backlash>=1 :
-                print('- 5 DEF')
-                perso.backlash-=1
-                perso.defense-=5
-        elif perso.nom=='Red' :
-            if perso.backlash>0 :
-                perso.backlash-=1
-                print('Red se sent mieux')
-            elif perso.backlash==0 :
-                perso.tour=True
+        if perso.PV>0 :
+            for pic in enemies :
+                print('PV '+pic.nom+':',pic.PV)#on affiche les PV de chaque ennemi
+            print('PV '+perso.nom+': ',perso.PV)
+            print('')
+            if perso.nom=='Chuck' :
+                if perso.backlash>=1 :
+                    print('- 5 DEF')
+                    perso.backlash-=1
+                    perso.defense-=5
+            elif perso.nom=='Red' :
+                if perso.backlash>0 :
+                    perso.backlash-=1
+                    print('Red se sent mieux')
+                elif perso.backlash==0 :
+                    perso.tour=True
     return perso.PV>0

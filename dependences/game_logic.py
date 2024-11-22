@@ -176,4 +176,3 @@ def jeu():
         stop = True  # on arrête le jeu
 
 
-jeu()

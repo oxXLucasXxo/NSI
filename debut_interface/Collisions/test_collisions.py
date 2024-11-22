@@ -7,21 +7,18 @@ def scale_by(image,factor) :
 
 screen=pygame.display.set_mode((480,480))
 pygame.display.set_caption('Test collisions')
-map=pygame.image.load('map.png').convert_alpha()
+map=pygame.image.load('debut_interface/Collisions/map.png').convert_alpha()
 map=scale_by(map,2)
 
-tmx_data=pytmx.load_pygame('collision.tmx')
+tmx_data=pytmx.load_pygame('debut_interface/Collisions/collision.tmx')
 
 collidable_tiles=[]
 
 for layer in tmx_data.visible_layers :
     if isinstance(layer,pytmx.TiledTileLayer) :
-        print(layer)
         for x,y, gid in layer :
             if gid :
-                print(gid)
                 tile_properties=tmx_data.get_tile_properties_by_gid(gid)
-                print(tile_properties)
                 if tile_properties and tile_properties.get('collidable') :
                     collidable_tiles.append(pygame.Rect(2*x*tmx_data.tilewidth,
                                                         2*y*tmx_data.tileheight,
@@ -45,9 +42,16 @@ class Perso :
         self.nb_frames=len(self.l_sprites[self.direction])
         screen.blit(self.l_sprites[self.direction][int(self.current_frame)%self.nb_frames],(self.x,self.y))
     def get_rect(self) :
+        self.nb_frames=len(self.l_sprites[self.direction])
         rect = self.l_sprites[self.direction][int(self.current_frame)%self.nb_frames].get_rect()
         rect.topleft=(self.x,self.y)
+        rect.height+=2
+        rect.width+=2
         return rect
+    def get_collision(self,liste) :
+        for rect in liste :
+            if perso.get_rect().colliderect(rect) :
+                return True
 
 class Enemy :
     "définition d'un ennemi"
@@ -68,7 +72,7 @@ class Enemy :
             screen.blit(pygame.transform.flip(self.sprites[int(self.current_frame)%self.nb_frames],True,False),(self.x,self.y))
         else :
             screen.blit(self.idle,(self.x,self.y))
-                    
+
 clock=pygame.time.Clock()
 perso=Perso('zelda',30,30)
 lapin=Enemy('lapin')
@@ -79,65 +83,51 @@ while not stop :
     for event in pygame.event.get() :
         if event.type==QUIT :
             pygame.quit()
-        elif event.type==KEYDOWN and not move:
-            if event.key==K_UP :
+        keys=pygame.key.get_pressed()
+        if any([keys[K_UP],keys[K_DOWN],keys[K_LEFT],keys[K_RIGHT]]) :
+            move=True
+            if keys[K_UP] :
                 perso.direction='haut'
-                move=True
-            elif event.key==K_DOWN :
+            if keys[K_DOWN] :
                 perso.direction='bas'
-                move=True
-            elif event.key==K_RIGHT :
+            if keys[K_RIGHT] :
                 perso.direction='droite'
-                move=True
-            elif event.key==K_LEFT :
+            if keys[K_LEFT] :
                 perso.direction='gauche'
-                move=True
         elif event.type==KEYUP :
-            if event.key==K_UP :
+            if event.key==K_UP and perso.direction=='haut':
                 perso.current_frame=0
-                perso.direction='haut'
                 move=False
-            elif event.key==K_DOWN :
+            if event.key==K_DOWN and perso.direction=='bas':
                 perso.current_frame=0
-                perso.direction='bas'
                 move=False
-            elif event.key==K_RIGHT :
+            if event.key==K_RIGHT and perso.direction=='droite':
                 perso.current_frame=0
-                perso.direction='droite'
                 move=False
-            elif event.key==K_LEFT :
+            if event.key==K_LEFT and perso.direction=='gauche':
                 perso.current_frame=0
-                perso.direction='gauche'
                 move=False
-    clock.tick(60)
-    screen.fill((0,0,0))
-    screen.blit(map,(0,0))
-    perso.draw(screen)
-    lapin.draw(screen)
-    pygame.display.flip()
     if move :
         if perso.direction=='gauche' :
             perso.x-=2
+            if perso.get_collision(collidable_tiles) :
+                perso.x+=3
         if perso.direction=='droite' :
             perso.x+=2
+            if perso.get_collision(collidable_tiles) :
+                perso.x-=3
         if perso.direction=='haut' :
             perso.y-=2
+            if perso.get_collision(collidable_tiles) :
+                perso.y+=3
         if perso.direction=='bas' :
             perso.y+=2
+            if perso.get_collision(collidable_tiles) :
+                perso.y-=3
         perso.current_frame+=0.08
     else:
         perso.current_frame=0
-    for tile in collidable_tiles :
-        pygame.draw.rect(screen, (255, 0, 0), tile, 1)
-        if perso.get_rect().colliderect(tile) :
-            if perso.direction=='gauche' :
-                perso.x+=2
-            if perso.direction=='droite' :
-                perso.x-=2
-            if perso.direction=='haut' :
-                perso.y+=2
-            if perso.direction=='bas' :
-                perso.y-=2
+    
     if lapin.pos != perso.pos :
         if lapin.x<perso.x :
             lapin.x+=0.5
@@ -153,3 +143,9 @@ while not stop :
     else :
         lapin.current_frame=0
         lapin.direction='idle'
+    clock.tick(60)
+    screen.fill((0,0,0))
+    screen.blit(map,(0,0))
+    perso.draw(screen)
+    lapin.draw(screen)
+    pygame.display.flip()

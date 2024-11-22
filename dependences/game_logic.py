@@ -42,7 +42,7 @@ def jeu() :
                 print('Stamina :',perso.stamina,'- PV',perso.nom,':',perso.PV,'/',perso.PVmax,'// PV',picoo.nom,':',picoo.PV)#on annonce le résultat
                 print(picoo.nom+' est K.O.')#on précise que le picoo est K.O.
                 print('Bravo! Vous passez au stage suivant.')
-                perso.GainXP(30)#on ajoute de l'XP au joueur
+                perso.gain_xp(30)#on ajoute de l'XP au joueur
                 print('+30 XP')
                 print('XP :', perso.XP,', Niveau :', perso.niveau)
                 print('')
@@ -81,7 +81,7 @@ def jeu() :
             print('Stage',stage,":",perso.nom,'affronte',enemies[0].nom+', '+enemies[1].nom+' et '+enemies[2].nom)
             if combat_multiple(perso,enemies) :#si le joueur est vainqueur
                 print('Bravo! Vous passez au stage suivant.')#on augmente ses stats
-                perso.GainXP(60)
+                perso.gain_xp(60)
                 print('+60 XP')
                 print('XP :', perso.XP,', Niveau :', perso.niveau)
                 print('')

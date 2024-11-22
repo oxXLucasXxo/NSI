@@ -47,47 +47,46 @@ class Bird:
             self.att_spe = ['Kamikaze', 50]
 
     def attaquer(self, ennemi, indice=0):
-        """
+        '''
         On crée une méthode qui prend un ennemi en paramètre et permet au Bird d'attaquer l'ennemi avec l'attaque de son choix.
-        """
+        '''
         global ennemi_tour
         ennemi_tour = True
-        attaque_valide = False  # on initialise une variable qui permettra de vérfier que le Bird peut attaquer
+        attaque_valide = False  # on initialise une variable qui permettra de vérifier que le Bird peut attaquer
         print('')
         time.sleep(1)
         while not attaque_valide:
             if self.nom == 'Bomb':
-                print(self.nom + ': Stamina:', self.stamina, ', PV:', self.PV, '/', self.PVmax,
-                      '// PV ' + ennemi[indice].nom + ':', ennemi[indice].PV)  # on rappelle les PV de chacun
+                print(
+                    f'{self.nom} | Stamina: {self.stamina}, PV: {self.PV}/{self.PVmax}\n{ennemi[indice].nom} | PV: {ennemi[indice].PV}')  # on rappelle les PV de chacun
             else:
-                print(self.nom + ': Stamina:', self.stamina, ', PV:', self.PV, '/', self.PVmax,
-                      '// PV ' + ennemi.nom + ':', ennemi.PV)  # on rappelle les PV de chacun
-            attaque = input('Quelle attaque souhaitez-vous lancer ? 1: Normal, 2: ' + self.att_spe[
-                0])  # on demande au joueur quelle attaque il souhaite lancer
+                print(
+                    f'{self.nom} | Stamina: {self.stamina}, PV: {self.PV}/{self.PVmax}\n{ennemi.nom} | PV: {ennemi.PV}')  # on rappelle les PV de chacun
+            attaque = input(
+                f'Quelle attaque souhaitez-vous lancer ? 1: Normal, 2: {self.att_spe[0]}')  # on demande au joueur quelle attaque il souhaite lancer
             if attaque == '1':  # si le joueur choisit de lancer une attaque normale
                 if self.nom == 'Bomb':
                     if self.attaque < ennemi[
                         indice].defense:  # si la défense de l'ennemi est supérieure à  l'attaque du joueur
                         ennemi[indice].PV -= 0  # le joueur ne lui fait aucun dégà¢t
-                        print(self.nom, 'attaque', ennemi[indice].nom,
-                              ': Vous ne faites aucun dégà¢ts.')  # On le précise
+                        print(f'{self.nom} attaque {ennemi[indice].nom}: Vous ne faites aucun dégât.')  # On le précise
                     else:
                         ennemi[indice].PV -= self.attaque - ennemi[
                             indice].defense  # on inflige des dégà¢ts à  l'ennemi qui correspondent à  la différence entre sa défense et l'attaque du joueur
                         if ennemi[indice].PV < 0:  # si les PV de l'ennemi passe en dessous de 0
                             ennemi[indice].PV = 0  # on les passe à  0
-                        print(self.nom, 'attaque', ennemi[indice].nom, ': Vous faites',
-                              self.attaque - ennemi[indice].defense, 'dégà¢ts.')  # On précise les dégà¢ts infligés
+                        print(
+                            f'{self.nom} attaque {ennemi[indice].nom}: Vous faites {self.attaque - ennemi[indice].defense} dégâts.')  # On précise les dégà¢ts infligés
                 else:
                     if self.attaque < ennemi.defense:  # si la défense de l'ennemi est supérieure à  l'attaque du joueur
                         ennemi.PV -= 0  # le joueur ne lui fait aucun dégà¢t
-                        print(self.nom, 'attaque', ennemi.nom, ': Vous ne faites aucun dégà¢ts.')  # On le précise
+                        print(f'{self.nom} attaque {ennemi.nom}: Vous ne faites aucun dégât.')  # On le précise
                     else:
                         ennemi.PV -= self.attaque - ennemi.defense  # on inflige des dégà¢ts à  l'ennemi qui correspondent à  la différence entre sa défense et l'attaque du joueur
                         if ennemi.PV < 0:  # si les PV de l'ennemi passe en dessous de 0
                             ennemi.PV = 0  # on les passe à  0
-                        print(self.nom, 'attaque', ennemi.nom, ': Vous faites', self.attaque - ennemi.defense,
-                              'dégà¢ts.')  # On précise les dégà¢ts infligés
+                        print(
+                            f'{self.nom} attaque {ennemi.nom}: Vous faites {self.attaque - ennemi.defense} dégâts.')  # On précise les dégà¢ts infligés
                 attaque_valide = True  # on valide l'attaque
 
             elif attaque == '2':  # s'il choisit son attaque spéciale
@@ -102,13 +101,13 @@ class Bird:
                         if self.att_spe[
                             1] < ennemi.defense:  # si la défense de l'ennemi est supérieure à  l'attaque du bird
                             ennemi.PV -= 0  # le joueur ne fait aucun dégà¢t
-                            print(self.nom, 'attaque', ennemi.nom, ': Vous ne faites aucun dégà¢t.')
+                            print(f'{self.nom} attaque {ennemi.nom}: Vous ne faites aucun dégât.')
                         else:
                             ennemi.PV -= self.att_spe[1] - ennemi.defense  # sinon on inflige des dégà¢ts à  l'ennemi
                             if ennemi.PV < 0:  # si ses PV sont inférieurs à  0
                                 ennemi.PV = 0  # on les passe à  0
-                            print(self.nom, 'attaque', ennemi.nom, ': Vous faites', self.att_spe[1] - ennemi.defense,
-                                  'dégà¢ts.')
+                            print(
+                                f'{self.nom} attaque {ennemi.nom}: Vous faites {self.att_spe[1] - ennemi.defense} dégâts.')
                         print('Red est épuisé')
                         self.tour = False
                         self.backlash = 1
@@ -119,13 +118,13 @@ class Bird:
                             if self.att_spe[
                                 1] < enn.defense:  # si la défense de l'ennemi est supérieure à  l'attaque du bird
                                 enn.PV -= 0  # le joueur ne fait aucun dégà¢t
-                                print(enn.nom, 'ne se prend aucun dégà¢t')
+                                print(f'{enn.nom} ne se prend aucun dégât.')
                             else:
                                 enn.PV -= self.att_spe[1] - enn.defense  # sinon on inflige des dégà¢ts à  l'ennemi
                                 if enn.PV < 0:  # si ses PV sont inférieurs à  0
                                     enn.PV = 0  # on les passe à  0
-                                print(enn.nom, 'se prend', self.att_spe[1] - enn.defense, 'dégà¢ts.')
-                        print('Vous prenez 50 dégà¢ts de contrecoup')
+                                print(f'{enn.nom} se prend {self.att_spe[1] - enn.defense} dégâts.')
+                        print('Vous prenez 50 dégâts de contrecoup')
                         self.PV -= 50
                         attaque_valide = True  # on valide l'attaque
                     self.stamina -= 20  # on diminue la stamina du joueur
@@ -152,4 +151,4 @@ class Bird:
             self.vitesse += 5
             self.stamina += 5
             self.staminamax += 5
-            self.att_spe[1]+=5
+            self.att_spe[1] += 5

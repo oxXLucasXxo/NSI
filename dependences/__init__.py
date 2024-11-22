@@ -1,4 +1,4 @@
-from dependences import game_logic
+from .game_logic import jeu
 from dependences import bird
 from dependences import combat_mecanic
 from dependences import picoo

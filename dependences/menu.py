@@ -1,4 +1,5 @@
-from bird import Bird
+from dependences import bird
+from .bird import Bird
 
 
 def menu():

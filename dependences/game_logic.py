@@ -1,9 +1,13 @@
 import random
 import time
-from bird import Bird
-from picoo import Picoo
-from menu import menu
-from combat_mecanic import combat, combat_multiple
+from dependences import game_logic
+from dependences import bird
+from dependences import combat_mecanic
+from dependences import picoo
+from dependences import utils
+from .menu import menu
+from .picoo import Picoo
+from .combat_mecanic import combat, combat_multiple
 
 
 def jeu():
